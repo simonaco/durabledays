@@ -1,0 +1,9 @@
+{
+  "bindings": [
+    {
+      "name": "email",
+      "type": "activityTrigger",
+      "direction": "in"
+    }
+  ]
+}

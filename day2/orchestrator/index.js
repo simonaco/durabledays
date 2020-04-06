@@ -1,5 +1,5 @@
 ﻿/*
- * params: url, payload, custom time, number of retry, email
+ * params: url, payload, scheduledDate, retry, email, method
  * Schedule request: make-request
  * Notification when failure: send-alert
  *
@@ -16,7 +16,7 @@ module.exports = df.orchestrator(function* (context) {
     "Received monitor request. url: " +
       (input ? input.url : undefined) +
       ". customTime: " +
-      (input ? input.customTime : undefined) +
+      (input ? input.scheduledDate : undefined) +
       "."
   );
   validateRequest(input);
@@ -35,6 +35,18 @@ function validateRequest(request) {
   }
   if (!request.url) {
     throw new Error("A url input is required.");
+  }
+  if (!request.method) {
+    throw new Error("A method input is required.");
+  }
+  if (!request.retry) {
+    throw new Error("A retry input is required.");
+  }
+  if (!request.scheduledDate) {
+    throw new Error("A scheduledDate input is required.");
+  }
+  if (!request.email) {
+    throw new Error("A email input is required.");
   }
 }
 

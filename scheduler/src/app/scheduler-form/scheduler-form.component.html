@@ -1,0 +1,79 @@
+<form [formGroup]="schedulerForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="scheduler-card">
+    <mat-card-header>
+      <mat-card-title>Scheduler Information</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="URL" formControlName="url">
+            <mat-error *ngIf="schedulerForm.controls['url'].hasError('required')">
+              URL is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <textarea matInput placeholder="Payload" formControlName="payload"></textarea>
+            <mat-error *ngIf="schedulerForm.controls['payload'].hasError('required')">
+              Payload is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Number of retries" formControlName="retry">
+            <mat-error *ngIf="schedulerForm.controls['retry'].hasError('required')">
+              Retry is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="input-wrapper">
+            <label>Date Time:</label>
+            <input formControlName="scheduledDate" [owlDateTimeTrigger]="dtPicker2" [owlDateTime]="dtPicker2">
+            <owl-date-time #dtPicker2></owl-date-time>
+          </div>
+          <mat-error *ngIf="schedulerForm.controls['scheduledDate'].hasError('required')">
+            Scheduled Date is <strong>required</strong>
+          </mat-error>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-select placeholder="Method" formControlName="method">
+              <mat-option *ngFor="let method of methods" [value]="method">
+                {{ method }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="schedulerForm.controls['method'].hasError('required')">
+              Method is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Email" formControlName="email">
+            <mat-error *ngIf="schedulerForm.controls['email'].hasError('required')">
+              Email is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit" [disabled]="submitDisabled">Schedule</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

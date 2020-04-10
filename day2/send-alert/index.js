@@ -3,7 +3,7 @@ const SEND_GRID_API_URL = "https://api.sendgrid.com/v3/mail/send";
 const sendEmail = async (email) => {
   const data = {
     from: {
-      email: "simona.cotin@gmail.com",
+      email: "simona_cotin@yahoo.com",
     },
     personalizations: [
       {

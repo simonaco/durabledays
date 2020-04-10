@@ -6,15 +6,16 @@
  */
 
 const df = require("durable-functions");
+const moment = require("moment");
 
 module.exports = df.orchestrator(function* (context) {
   const input = context.df.getInput();
 
   const log = createReplaySafeLogger(context);
   validateRequest(input);
-
+  const deadline = moment.utc(input.scheduledDate);
   // Durable timers are currently limited to 7 days
-  yield context.df.createTimer(scheduledDate);
+  yield context.df.createTimer(deadline.toDate());
   log("Making API request " + input.url + ", " + input.payload);
   const response = yield context.df.callActivity("make-request", input);
   log(response);

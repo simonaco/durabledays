@@ -32,7 +32,8 @@ export class SchedulerFormComponent implements OnChanges {
     })
   }
   onSubmit() {
-    const formValues = this.schedulerForm.value;
+    const formValues = { ...this.schedulerForm.value, payload: JSON.stringify(this.schedulerForm.value.payload) }
+
     this.schedulerService.scheduleRequest(formValues)
       .subscribe(data => {
         console.log(data);

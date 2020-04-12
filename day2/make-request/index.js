@@ -1,22 +1,28 @@
 ﻿const axios = require("axios");
-const getRequest = async (url) => {
-  const response = await axios({
-    url: url,
-    method: "get",
-  });
+const getRequest = async (params) => {
+  const response = await axios(params);
   return response.data;
 };
 
-const postRequest = async (url, payload) => {
+const postRequest = async ({ url, method, payload }) => {
   const response = await axios({
-    url: url,
-    method: "post",
+    url,
+    method,
     data: JSON.parse(payload),
   });
   return response.data;
 };
 module.exports = async function (context, input) {
-  if (input.method === "GET") return getRequest(input.url);
-  else if (input.method === "POST")
-    return postRequest(input.url, input.payload);
+  try {
+    if (input.method === "GET") {
+      const res = await getRequest({ method: input.method, url: input.url });
+      return res;
+    } else if (input.method === "POST") {
+      const res = await postRequest(input);
+      return res;
+    }
+  } catch (err) {
+    context.log(`Scheduled API call encountered an error: ${err}`);
+    throw new Error(err);
+  }
 };

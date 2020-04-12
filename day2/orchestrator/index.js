@@ -9,17 +9,21 @@ const df = require("durable-functions");
 const moment = require("moment");
 
 module.exports = df.orchestrator(function* (context) {
-  const input = context.df.getInput();
+  const { url, email, payload, method, scheduledDate } = context.df.getInput();
 
   const log = createReplaySafeLogger(context);
-  validateRequest(input);
-  const deadline = moment.utc(input.scheduledDate);
+  //validateRequest(input);
+  const deadline = moment.utc(scheduledDate);
   // Durable timers are currently limited to 7 days
   yield context.df.createTimer(deadline.toDate());
-  log("Making API request " + input.url + ", " + input.payload);
-  const response = yield context.df.callActivity("make-request", input);
+  log(`Making API request ${url}, ${payload}`);
+  const response = yield context.df.callActivity("make-request", {
+    url,
+    payload,
+    method,
+  });
   log(response);
-  yield context.df.callActivity("send-alert", input.email);
+  yield context.df.callActivity("send-alert", email);
 
   log("Monitor expiring.");
 });

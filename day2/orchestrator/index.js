@@ -7,9 +7,20 @@
 
 const df = require("durable-functions");
 const moment = require("moment");
-
+const firstRetryIntervalInMilliseconds = 5000;
 module.exports = df.orchestrator(function* (context) {
-  const { url, email, payload, method, scheduledDate } = context.df.getInput();
+  const {
+    url,
+    email,
+    payload,
+    method,
+    scheduledDate,
+    retry,
+  } = context.df.getInput();
+  const retryOptions = new df.RetryOptions(
+    firstRetryIntervalInMilliseconds,
+    retry
+  );
 
   const log = createReplaySafeLogger(context);
   //validateRequest(input);
@@ -17,11 +28,15 @@ module.exports = df.orchestrator(function* (context) {
   // Durable timers are currently limited to 7 days
   yield context.df.createTimer(deadline.toDate());
   log(`Making API request ${url}, ${payload}`);
-  const response = yield context.df.callActivity("make-request", {
-    url,
-    payload,
-    method,
-  });
+  const response = yield context.df.callActivityWithRetry(
+    "make-request",
+    retryOptions,
+    {
+      url,
+      payload,
+      method,
+    }
+  );
   log(response);
   yield context.df.callActivity("send-alert", email);
 

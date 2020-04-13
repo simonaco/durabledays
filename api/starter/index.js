@@ -8,7 +8,9 @@ module.exports = async function (context, req) {
     req.body
   );
 
-  context.log(`Started orchestration with ID = '${instanceId}'.`);
+  context.log(
+    `Started orchestration with ID = '${instanceId}'. This is a new deployment`
+  );
 
   return client.createCheckStatusResponse(context.bindingData.req, instanceId);
 };

@@ -20,6 +20,8 @@ jobs:
     steps:
       - name: "Checkout GitHub Action"
         uses: actions/checkout@master
+        with:
+          path: api
 
       - name: Setup Node ${{ env.NODE_VERSION }} Environment
         uses: actions/setup-node@v1

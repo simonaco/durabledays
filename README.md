@@ -4,7 +4,7 @@
     <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
   </a>
   <a href="https://twitter.com/simona_cotin" target="_blank">
-    <img alt="Twitter: simona\_cotin" src="https://img.shields.io/twitter/follow/simona\_cotin.svg?style=social" />
+    <img alt="Twitter: simona_cotin" src="https://img.shields.io/twitter/follow/simona_cotin.svg?style=social" />
   </a>
 </p>
 

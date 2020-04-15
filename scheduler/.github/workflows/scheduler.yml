@@ -1,4 +1,4 @@
-name: Deploy Node.js project to Azure Function App
+name: Deploy scheduler project to Azure Function App
 
 on: [push]
 
@@ -15,7 +15,7 @@ env:
   NODE_VERSION: "12.x" # set this to the node version to use (supports 8.x, 10.x, 12.x)
 
 jobs:
-  build-and-deploy:
+  build-and-deploy-scheduler:
     runs-on: windows-latest
     steps:
       - name: "Checkout GitHub Action"

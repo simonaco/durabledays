@@ -1,0 +1,15 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "your storage account endpoint",
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "DURABLE_FILES": "your table storage account endpoint",
+    "FUNCTIONS_EXTENSION_VERSION": "~3",
+    "WEBSITE_NODE_DEFAULT_VERSION": "~12",
+    "WEBSITE_RUN_FROM_PACKAGE": "1",
+    "APPINSIGHTS_INSTRUMENTATIONKEY": "your key here"
+  },
+  "Host": {
+    "CORS": "*"
+  }
+}

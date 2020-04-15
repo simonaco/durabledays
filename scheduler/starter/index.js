@@ -1,7 +1,7 @@
 ﻿const df = require("durable-functions");
 
 module.exports = async function (context, req) {
-  context.log("Deploy from Github Action");
+  context.log("Deploy from scheduler Github Action ");
   const client = df.getClient(context);
   const instanceId = await client.startNew(
     req.params.functionName,

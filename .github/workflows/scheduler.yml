@@ -1,6 +1,9 @@
-name: Deploy Node.js project to Azure Function App
+name: Deploy scheduler project to Azure Function App
 
-on: [push]
+on:
+  push:
+    paths:
+      - "scheduler/**"
 
 # CONFIGURATION
 # For help, go to https://github.com/Azure/Actions
@@ -11,11 +14,11 @@ on: [push]
 # 2. Change these variables for your configuration:
 env:
   AZURE_FUNCTIONAPP_NAME: durabledays # set this to your application's name
-  AZURE_FUNCTIONAPP_PACKAGE_PATH: "api" # set this to the path to your web app project, defaults to the repository root
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: "scheduler" # set this to the path to your web app project, defaults to the repository root
   NODE_VERSION: "12.x" # set this to the node version to use (supports 8.x, 10.x, 12.x)
 
 jobs:
-  build-and-deploy:
+  build-and-deploy-scheduler:
     runs-on: windows-latest
     steps:
       - name: "Checkout GitHub Action"

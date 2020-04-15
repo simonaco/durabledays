@@ -1,0 +1,16 @@
+{
+  "bindings": [
+    {
+      "name": "input",
+      "type": "activityTrigger",
+      "direction": "in"
+    },
+    {
+      "name": "schedulerTable",
+      "type": "table",
+      "tableName": "apischeduler",
+      "connection": "DURABLE_FILES",
+      "direction": "out"
+    }
+  ]
+}

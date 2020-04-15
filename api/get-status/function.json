@@ -1,0 +1,24 @@
+{
+  "bindings": [
+    {
+      "authLevel": "anonymous",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "methods": ["get", "post"]
+    },
+    {
+      "name": "schedulerTable",
+      "type": "table",
+      "tableName": "apischeduler",
+      "connection": "DURABLE_FILES",
+      "partitionKey": "URL",
+      "direction": "in"
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "res"
+    }
+  ]
+}

@@ -4,15 +4,17 @@ import {
   HttpClient,
   HttpErrorResponse
 } from '@angular/common/http';
-import { throwError } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
+import { Status } from '../shared/status.model';
 
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json'
   })
 }
-const URL = "http://localhost:7071/api/orchestrators/orchestrator";
+const SCHEDULER_URL = "http://localhost:7071/api/orchestrators/orchestrator";
+const STATUS_URL = "http://localhost:7071/api/get-status"
 
 @Injectable({
   providedIn: 'root'
@@ -37,9 +39,13 @@ export class SchedulerService {
   };
 
   scheduleRequest(request: Request) {
-    return this.http.post<Request>(URL, request, httpOptions)
+    return this.http.post<Request>(SCHEDULER_URL, request, httpOptions)
       .pipe(
         catchError(this.handleError)
       )
+  }
+
+  getStatus(): Observable<Status[]> {
+    return this.http.get<Status[]>(STATUS_URL);
   }
 }

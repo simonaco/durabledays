@@ -38,6 +38,14 @@ module.exports = df.orchestrator(function* (context) {
     }
   );
   log(response);
+  //save response in table storage
+  yield context.df.callActivity("save-response", {
+    instanceId: context.df.instanceId,
+    response,
+    url,
+    payload,
+    scheduledDate,
+  });
   yield context.df.callActivity("send-alert", email);
 
   log("Monitor expiring.");

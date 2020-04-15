@@ -1,6 +1,9 @@
 name: Deploy scheduler project to Azure Function App
 
-on: [push]
+on:
+  push:
+    paths:
+      - "scheduler/**"
 
 # CONFIGURATION
 # For help, go to https://github.com/Azure/Actions

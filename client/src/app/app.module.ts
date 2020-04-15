@@ -16,17 +16,24 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
 
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { StatusTableComponent } from './status-table/status-table.component';
+import { AgGridModule } from 'ag-grid-angular';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SchedulerFormComponent
+    SchedulerFormComponent,
+    StatusTableComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    AgGridModule.withComponents([]),
     ReactiveFormsModule,
     MatInputModule,
     MatButtonModule,
@@ -35,6 +42,9 @@ import { MatCardModule } from '@angular/material/card';
     MatCardModule,
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
   ],
   providers: [{ provide: OWL_DATE_TIME_FORMATS, useValue: { useUtc: true } }],
   bootstrap: [AppComponent]

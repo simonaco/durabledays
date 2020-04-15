@@ -21,6 +21,8 @@
     "@angular/platform-browser": "~8.2.14",
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
+    "ag-grid-angular": "^23.0.3",
+    "ag-grid-community": "^23.0.2",
     "hammerjs": "^2.0.8",
     "ng-pick-datetime": "^7.0.0",
     "rxjs": "~6.4.0",

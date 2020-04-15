@@ -4,7 +4,8 @@
     "AzureWebJobsStorage": "your storage account endpoint",
     "FUNCTIONS_WORKER_RUNTIME": "node",
     "FUNCTIONS_V2_COMPATIBILITY_MODE": "true",
-    "API_KEY": "your sendgrid api key"
+    "API_KEY": "your sendgrid api key",
+    "DURABLE_FILES": "your table storage account endpoint"
   },
   "Host": {
     "LocalHttpPort": 7071,

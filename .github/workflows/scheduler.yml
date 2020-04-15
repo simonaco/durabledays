@@ -1,4 +1,4 @@
-name: Deploy scheduler project to Azure Function App
+name: scheduler
 
 on:
   push:

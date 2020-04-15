@@ -1,4 +1,4 @@
-name: Deploy api project to Azure Function App
+name: api
 
 on:
   push:
